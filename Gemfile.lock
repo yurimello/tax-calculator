@@ -1,32 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (8.1.0)
-      base64
-      bigdecimal
-      concurrent-ruby (~> 1.0, >= 1.3.1)
-      connection_pool (>= 2.2.5)
-      drb
-      i18n (>= 1.6, < 2)
-      json
-      logger (>= 1.4.2)
-      minitest (>= 5.1)
-      securerandom (>= 0.3)
-      tzinfo (~> 2.0, >= 2.0.5)
-      uri (>= 0.13.1)
-    base64 (0.3.0)
-    bigdecimal (3.3.1)
-    concurrent-ruby (1.3.5)
-    connection_pool (2.5.4)
     diff-lcs (1.6.2)
-    drb (2.2.3)
-    factory_bot (6.5.6)
-      activesupport (>= 6.1.0)
-    i18n (1.14.7)
-      concurrent-ruby (~> 1.0)
-    json (2.15.2)
-    logger (1.7.0)
-    minitest (5.26.0)
     rspec (3.13.2)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -41,17 +16,12 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.6)
     ruby-debugger (0.1.0)
-    securerandom (0.4.1)
-    tzinfo (2.0.6)
-      concurrent-ruby (~> 1.0)
-    uri (1.0.4)
 
 PLATFORMS
   arm64-darwin-22
   ruby
 
 DEPENDENCIES
-  factory_bot
   rspec
   ruby-debugger
 
