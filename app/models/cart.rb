@@ -6,10 +6,10 @@ class Cart
   end
 
   def full_price
-    @products.map(&:full_price).sum
+    @products.sum(&:full_price).round(2)
   end
 
   def sales_tax
-    @products.map(&:sales_tax).sum
+    @products.sum(&:tax).round(2)
   end
 end

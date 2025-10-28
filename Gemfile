@@ -3,4 +3,4 @@
 source "https://rubygems.org"
 
 gem 'rspec'
-gem 'ruby-debugger'
+gem 'byebug'
