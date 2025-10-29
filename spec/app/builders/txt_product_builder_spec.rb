@@ -7,7 +7,7 @@ RSpec.describe TxtProductBuilder do
         product = described_class.build(product_line)
 
         expect(product).to be_a(Product)
-        expect(product.name).to eq(' book ')
+        expect(product.name).to eq('book')
         expect(product.net_price).to eq(12.49)
         expect(product.quantity).to eq(1)
         expect(product.category).to eq('book')
@@ -20,10 +20,10 @@ RSpec.describe TxtProductBuilder do
         product = described_class.build(product_line)
 
         expect(product).to be_a(Product)
-        expect(product.name).to eq(' box of chocolates ')
+        expect(product.name).to eq('box of chocolates')
         expect(product.net_price).to eq(10.00)
         expect(product.quantity).to eq(2)
-        expect(product.category).to eq('chocolate')
+        expect(product.category).to eq('food')
         expect(product.imported).to be_falsey
       end
 
@@ -33,7 +33,7 @@ RSpec.describe TxtProductBuilder do
         product = described_class.build(product_line)
 
         expect(product).to be_a(Product)
-        expect(product.name).to eq(' music CD ')
+        expect(product.name).to eq('music CD')
         expect(product.net_price).to eq(14.99)
         expect(product.quantity).to eq(1)
         expect(product.category).to eq('music')
@@ -46,7 +46,7 @@ RSpec.describe TxtProductBuilder do
         product = described_class.build(product_line)
 
         expect(product).to be_a(Product)
-        expect(product.name).to eq(' bottle of perfume ')
+        expect(product.name).to eq('bottle of perfume')
         expect(product.net_price).to eq(18.99)
         expect(product.quantity).to eq(1)
         expect(product.category).to eq('perfume')
@@ -59,10 +59,10 @@ RSpec.describe TxtProductBuilder do
         product = described_class.build(product_line)
 
         expect(product).to be_a(Product)
-        expect(product.name).to eq(' packet of headache pills ')
+        expect(product.name).to eq('packet of headache pills')
         expect(product.net_price).to eq(9.75)
         expect(product.quantity).to eq(1)
-        expect(product.category).to eq('pill')
+        expect(product.category).to eq('medical')
         expect(product.imported).to be_falsey
       end
     end
@@ -74,10 +74,10 @@ RSpec.describe TxtProductBuilder do
         product = described_class.build(product_line)
 
         expect(product).to be_a(Product)
-        expect(product.name).to eq(' imported box of chocolates ')
+        expect(product.name).to eq('imported box of chocolates')
         expect(product.net_price).to eq(10.00)
         expect(product.quantity).to eq(1)
-        expect(product.category).to eq('chocolate')
+        expect(product.category).to eq('food')
         expect(product.imported).to be_truthy
       end
 
@@ -87,7 +87,7 @@ RSpec.describe TxtProductBuilder do
         product = described_class.build(product_line)
 
         expect(product).to be_a(Product)
-        expect(product.name).to eq(' imported bottle of perfume ')
+        expect(product.name).to eq('imported bottle of perfume')
         expect(product.net_price).to eq(27.99)
         expect(product.quantity).to eq(1)
         expect(product.category).to eq('perfume')
@@ -111,7 +111,7 @@ RSpec.describe TxtProductBuilder do
         product = described_class.build(product_line)
 
         expect(product.quantity).to eq(0)
-        expect(product.name).to eq(' book ')
+        expect(product.name).to eq('book')
       end
 
       it 'builds product with large quantity' do
@@ -176,22 +176,22 @@ RSpec.describe TxtProductBuilder do
     end
 
     context 'with category detection' do
-      it 'detects singular category forms' do
+      it 'detects singular category forms and maps them' do
         expect(described_class.build('1 book at 10.00').category).to eq('book')
-        expect(described_class.build('1 chocolate at 5.00').category).to eq('chocolate')
-        expect(described_class.build('1 pill at 3.00').category).to eq('pill')
+        expect(described_class.build('1 chocolate at 5.00').category).to eq('food')
+        expect(described_class.build('1 pill at 3.00').category).to eq('medical')
       end
 
-      it 'detects plural category forms' do
+      it 'detects plural category forms and maps them' do
         expect(described_class.build('1 books at 10.00').category).to eq('book')
-        expect(described_class.build('1 chocolates at 5.00').category).to eq('chocolate')
-        expect(described_class.build('1 pills at 3.00').category).to eq('pill')
+        expect(described_class.build('1 chocolates at 5.00').category).to eq('food')
+        expect(described_class.build('1 pills at 3.00').category).to eq('medical')
       end
 
       it 'detects category regardless of case' do
-        expect(described_class.build('1 BOOK at 10.00').category).to eq('BOOK')
-        expect(described_class.build('1 Book at 10.00').category).to eq('Book')
-        expect(described_class.build('1 ChOcOlAtE at 5.00').category).to eq('ChOcOlAtE')
+        expect(described_class.build('1 BOOK at 10.00').category).to eq('book')
+        expect(described_class.build('1 Book at 10.00').category).to eq('book')
+        expect(described_class.build('1 ChOcOlAtE at 5.00').category).to eq('food')
       end
 
       it 'detects music category' do
@@ -286,12 +286,12 @@ RSpec.describe TxtProductBuilder do
     end
 
     context 'edge cases' do
-      it 'handles product names with multiple spaces' do
+      it 'handles product names with multiple spaces (strip removes leading/trailing)' do
         product_line = '1 box  of  chocolates at 10.00'
 
         product = described_class.build(product_line)
 
-        expect(product.name).to eq(' box  of  chocolates ')
+        expect(product.name).to eq('box  of  chocolates')
       end
 
       it 'handles extra spaces around at keyword' do
@@ -316,7 +316,7 @@ RSpec.describe TxtProductBuilder do
         product = described_class.build(product_line)
 
         expect(product.imported).to be_truthy
-        expect(product.category).to eq('chocolate')
+        expect(product.category).to eq('food')
       end
     end
   end

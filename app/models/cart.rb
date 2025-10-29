@@ -5,7 +5,7 @@ class Cart
     @products = []
   end
 
-  def full_price
+  def total
     @products.sum(&:full_price).round(2)
   end
 

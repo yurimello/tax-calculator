@@ -31,4 +31,4 @@ unless File.exist?(file_path)
   exit 1
 end
 
-cart = CartImporterService.call(file_path).cart
+CartCheckoutService.call(file_path)

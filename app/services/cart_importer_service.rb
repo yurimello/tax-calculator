@@ -15,13 +15,14 @@ class CartImporterService
       product = product_builder.build(line)
       @cart.products << product
     end
+    @cart
   end
 
   def product_builder
     case @file_type
     when 'txt'
-      TxtProductBuilder.new
-    else 
+      TxtProductBuilder
+    else
       raise "File type not supported"
     end
   end
