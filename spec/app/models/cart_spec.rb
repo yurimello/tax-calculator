@@ -38,65 +38,65 @@ RSpec.describe Cart do
     end
   end
 
-  describe '#full_price' do
+  describe '#total' do
     it 'returns 0 for empty cart' do
       cart = Cart.new
 
-      expect(cart.full_price).to eq(0)
+      expect(cart.total).to eq(0)
     end
 
     it 'calculates full price for single product' do
       cart = Cart.new
-      product = double('product', full_price: 12.49)
+      product = double('product', full_price:12.49)
       cart.products << product
 
-      expect(cart.full_price).to eq(12.49)
+      expect(cart.total).to eq(12.49)
     end
 
     it 'calculates full price for multiple products' do
       cart = Cart.new
-      product1 = double('product1', full_price: 12.49)
-      product2 = double('product2', full_price: 16.49)
-      product3 = double('product3', full_price: 0.85)
+      product1 = double('product1', full_price:12.49)
+      product2 = double('product2', full_price:16.49)
+      product3 = double('product3', full_price:0.85)
 
       cart.products << product1
       cart.products << product2
       cart.products << product3
 
-      expect(cart.full_price).to eq(29.83)
+      expect(cart.total).to eq(29.83)
     end
 
     it 'calculates full price including taxes for taxable items' do
       cart = Cart.new
-      product1 = double('product1', full_price: 16.49)
-      product2 = double('product2', full_price: 20.89)
+      product1 = double('product1', full_price:16.49)
+      product2 = double('product2', full_price:20.89)
 
       cart.products << product1
       cart.products << product2
 
-      expect(cart.full_price).to eq(37.38)
+      expect(cart.total).to eq(37.38)
     end
 
     it 'calculates full price for mixed exempt and taxable items' do
       cart = Cart.new
-      product1 = double('product1', full_price: 12.49)
-      product2 = double('product2', full_price: 16.49)
+      product1 = double('product1', full_price:12.49)
+      product2 = double('product2', full_price:16.49)
 
       cart.products << product1
       cart.products << product2
 
-      expect(cart.full_price).to eq(28.98)
+      expect(cart.total).to eq(28.98)
     end
 
     it 'calculates full price for imported items' do
       cart = Cart.new
-      product1 = double('product1', full_price: 10.50)
-      product2 = double('product2', full_price: 54.65)
+      product1 = double('product1', full_price:10.50)
+      product2 = double('product2', full_price:54.65)
 
       cart.products << product1
       cart.products << product2
 
-      expect(cart.full_price).to eq(65.15)
+      expect(cart.total).to eq(65.15)
     end
   end
 

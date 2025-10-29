@@ -165,16 +165,12 @@ RSpec.describe CartImporterService do
 
   describe '#product_builder' do
     context 'when file type is txt' do
-      it 'returns a TxtProductBuilder instance' do
+      it 'returns the TxtProductBuilder class' do
         service = described_class.new('path/to/file.txt', 'txt')
-        txt_builder_double = instance_double(TxtProductBuilder)
-
-        allow(TxtProductBuilder).to receive(:new).and_return(txt_builder_double)
 
         builder = service.product_builder
 
-        expect(TxtProductBuilder).to have_received(:new)
-        expect(builder).to eq(txt_builder_double)
+        expect(builder).to eq(TxtProductBuilder)
       end
     end
 
