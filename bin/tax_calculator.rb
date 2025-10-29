@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'optparse'
+require_relative '../lib/autoload'
 
 options = {}
 
@@ -29,3 +30,5 @@ unless File.exist?(file_path)
   puts "Error: '#{file_path}' is not a valid .txt file."
   exit 1
 end
+
+cart = CartImporterService.call(file_path).cart

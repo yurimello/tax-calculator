@@ -1,5 +1,3 @@
-require_relative '../../app/models/cart'
-
 RSpec.describe Cart do
   describe '#initialize' do
     it 'creates an empty cart' do

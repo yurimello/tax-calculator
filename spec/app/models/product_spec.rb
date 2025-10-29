@@ -1,5 +1,3 @@
-require_relative '../../app/models/product'
-
 RSpec.describe Product do
   describe '#initialize' do
     it 'creates a product with required attributes' do

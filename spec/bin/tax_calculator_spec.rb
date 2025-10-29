@@ -1,6 +1,5 @@
 # spec/read_txt_opt_spec.rb
 require 'open3'
-require 'tmpdir'
 
 RSpec.describe "tax_calculator.rb" do
   let(:script) { File.expand_path("../../bin/tax_calculator.rb", __dir__) }
