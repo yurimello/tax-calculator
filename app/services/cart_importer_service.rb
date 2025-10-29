@@ -7,15 +7,14 @@ class CartImporterService
   def initialize(file_path, file_type)
     @file_path = file_path
     @file_type = file_type
+    @cart = Cart.new
   end
 
   def call
-    cart = Cart.new
     File.read(@file_path).split("\n").map do |line|
       product = product_builder.build(line)
-      cart.products << product
+      @cart.products << product
     end
-    cart
   end
 
   def product_builder
